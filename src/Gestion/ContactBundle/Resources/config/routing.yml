@@ -1,0 +1,37 @@
+contact_contact:
+    resource: "@ContactBundle/Resources/config/routing/contact.yml"
+    prefix:   /contact
+
+contact_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ContactBundle:Default:index }
+contact:
+    path:     /
+    defaults: { _controller: "ContactBundle:Contact:index" }
+
+contact_show:
+    path:     /{id}/show
+    defaults: { _controller: "ContactBundle:Contact:show" }
+
+contact_new:
+    path:     /new
+    defaults: { _controller: "ContactBundle:Contact:new" }
+
+contact_create:
+    path:     /create
+    defaults: { _controller: "ContactBundle:Contact:create" }
+    methods:  POST
+
+contact_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ContactBundle:Contact:edit" }
+
+contact_update:
+    path:     /{id}/update
+    defaults: { _controller: "ContactBundle:Contact:update" }
+    methods:  [POST, PUT]
+
+contact_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ContactBundle:Contact:delete" }
+    methods:  [POST, DELETE]

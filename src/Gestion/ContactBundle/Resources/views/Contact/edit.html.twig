@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Modifier mes contacts</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('contact') }}">
+            Retour à la liste des contact
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
