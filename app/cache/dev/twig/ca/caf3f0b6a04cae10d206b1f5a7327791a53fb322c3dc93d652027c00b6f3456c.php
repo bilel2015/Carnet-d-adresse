@@ -40,14 +40,16 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
     {
         // line 6
         echo "<h1>Contact</h1>
+    
 
     <table style=\"records_list\">
         <tbody>
+        <ul>
             
             <tr>
                 <th>Nom:</th>
                 <td>";
-        // line 13
+        // line 15
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "nom", array()), "html", null, true);
         echo "</td>
             </tr>
@@ -55,7 +57,7 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
             <tr>
                 <th>Prenom:</th>
                 <td>";
-        // line 18
+        // line 20
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "prenom", array()), "html", null, true);
         echo "</td>
             </tr>
@@ -63,7 +65,7 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
             <tr>
                 <th>Adresse:</th>
                 <td>";
-        // line 23
+        // line 25
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "adresse", array()), "html", null, true);
         echo "</td>
             </tr>
@@ -71,7 +73,7 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
             <tr>
                 <th>Pays:</th>
                 <td>";
-        // line 28
+        // line 30
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "pays", array()), "html", null, true);
         echo "</td>
             </tr>
@@ -79,7 +81,7 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
             <tr>
                 <th>Ville:</th>
                 <td>";
-        // line 33
+        // line 35
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "ville", array()), "html", null, true);
         echo "</td>
             </tr>
@@ -87,17 +89,19 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
             <tr>
                 <th>Phone:</th>
                 <td>";
-        // line 38
+        // line 40
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "phone", array()), "html", null, true);
         echo "</td>
             </tr>
+              
         </tbody>
+      
     </table>
 
         <ul class=\"record_actions\">
     <li>
         <a href=\"";
-        // line 45
+        // line 49
         echo $this->env->getExtension('routing')->getPath("contact");
         echo "\">
             Retourner à la liste
@@ -105,14 +109,14 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
     </li>
     <li>
         <a href=\"";
-        // line 50
+        // line 54
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("contact_edit", array("id" => $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "id", array()))), "html", null, true);
         echo "\">
             Modifier
         </a>
     </li>
     <li>";
-        // line 54
+        // line 58
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), 'form');
         echo "</li>
 </ul>
@@ -131,7 +135,7 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
 
     public function getDebugInfo()
     {
-        return array (  116 => 54,  109 => 50,  101 => 45,  91 => 38,  83 => 33,  75 => 28,  67 => 23,  59 => 18,  51 => 13,  42 => 6,  39 => 5,  32 => 3,  29 => 2,  11 => 1,);
+        return array (  120 => 58,  113 => 54,  105 => 49,  93 => 40,  85 => 35,  77 => 30,  69 => 25,  61 => 20,  53 => 15,  42 => 6,  39 => 5,  32 => 3,  29 => 2,  11 => 1,);
     }
 }
 /* {% extends "ContactBundle::layout.html.twig" %}*/
@@ -140,9 +144,11 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
 /*     {%endblock%}*/
 /* {% block body -%}*/
 /*     <h1>Contact</h1>*/
+/*     */
 /* */
 /*     <table style="records_list">*/
 /*         <tbody>*/
+/*         <ul>*/
 /*             */
 /*             <tr>*/
 /*                 <th>Nom:</th>*/
@@ -173,7 +179,9 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
 /*                 <th>Phone:</th>*/
 /*                 <td>{{ entity.phone }}</td>*/
 /*             </tr>*/
+/*               */
 /*         </tbody>*/
+/*       */
 /*     </table>*/
 /* */
 /*         <ul class="record_actions">*/

@@ -8,7 +8,7 @@ class __TwigTemplate_7ed4c0460da07eb33cf5b62daad1e95c28040ec7492d261dbde00feb8a6
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("::base.html.twig", "ContactBundle:Contact:edit.html.twig", 1);
+        $this->parent = $this->loadTemplate("ContactBundle::layout.html.twig", "ContactBundle:Contact:edit.html.twig", 1);
         $this->blocks = array(
             'body' => array($this, 'block_body'),
         );
@@ -16,7 +16,7 @@ class __TwigTemplate_7ed4c0460da07eb33cf5b62daad1e95c28040ec7492d261dbde00feb8a6
 
     protected function doGetParent(array $context)
     {
-        return "::base.html.twig";
+        return "ContactBundle::layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -67,7 +67,7 @@ class __TwigTemplate_7ed4c0460da07eb33cf5b62daad1e95c28040ec7492d261dbde00feb8a6
         return array (  49 => 14,  42 => 10,  35 => 6,  31 => 4,  28 => 3,  11 => 1,);
     }
 }
-/* {% extends '::base.html.twig' %}*/
+/* {% extends "ContactBundle::layout.html.twig" %}*/
 /* */
 /* {% block body -%}*/
 /*     <h1>Modifier mes contacts</h1>*/
