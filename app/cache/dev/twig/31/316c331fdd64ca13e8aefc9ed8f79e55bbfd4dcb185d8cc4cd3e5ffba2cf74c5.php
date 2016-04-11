@@ -36,42 +36,42 @@ class __TwigTemplate_32b214f1e210a9e81e45e3ed42fcfdaa70d23573c6a0b7e7aa98bde9d58
 ";
         }
         // line 9
-        echo "
-<form action=\"";
-        // line 10
+        echo "<form action=\"";
         echo $this->env->getExtension('routing')->getPath("fos_user_security_check");
         echo "\" method=\"post\">
     <input type=\"hidden\" name=\"_csrf_token\" value=\"";
-        // line 11
+        // line 10
         echo twig_escape_filter($this->env, (isset($context["csrf_token"]) ? $context["csrf_token"] : $this->getContext($context, "csrf_token")), "html", null, true);
         echo "\" />
 
     <label for=\"username\">";
-        // line 13
+        // line 12
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("security.login.username", array(), "FOSUserBundle"), "html", null, true);
         echo "</label>
     <input type=\"text\" id=\"username\" name=\"_username\" value=\"";
-        // line 14
+        // line 13
         echo twig_escape_filter($this->env, (isset($context["last_username"]) ? $context["last_username"] : $this->getContext($context, "last_username")), "html", null, true);
         echo "\" required=\"required\" />
 
     <label for=\"password\">";
-        // line 16
+        // line 15
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("security.login.password", array(), "FOSUserBundle"), "html", null, true);
         echo "</label>
     <input type=\"password\" id=\"password\" name=\"_password\" required=\"required\" />
 
     <input type=\"checkbox\" id=\"remember_me\" name=\"_remember_me\" value=\"on\" />
     <label for=\"remember_me\">";
-        // line 20
+        // line 19
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("security.login.remember_me", array(), "FOSUserBundle"), "html", null, true);
         echo "</label>
 
     <input type=\"submit\" id=\"_submit\" name=\"_submit\" value=\"";
-        // line 22
+        // line 21
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("security.login.submit", array(), "FOSUserBundle"), "html", null, true);
         echo "\" />
 </form>
+
+
 ";
     }
 
@@ -87,7 +87,7 @@ class __TwigTemplate_32b214f1e210a9e81e45e3ed42fcfdaa70d23573c6a0b7e7aa98bde9d58
 
     public function getDebugInfo()
     {
-        return array (  72 => 22,  67 => 20,  60 => 16,  55 => 14,  51 => 13,  46 => 11,  42 => 10,  39 => 9,  33 => 7,  31 => 6,  28 => 5,  11 => 1,);
+        return array (  70 => 21,  65 => 19,  58 => 15,  53 => 13,  49 => 12,  44 => 10,  39 => 9,  33 => 7,  31 => 6,  28 => 5,  11 => 1,);
     }
 }
 /* {% extends 'UserBundle::layout.html.twig' %}*/
@@ -98,7 +98,6 @@ class __TwigTemplate_32b214f1e210a9e81e45e3ed42fcfdaa70d23573c6a0b7e7aa98bde9d58
 /* {% if error %}*/
 /*     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>*/
 /* {% endif %}*/
-/* */
 /* <form action="{{ path("fos_user_security_check") }}" method="post">*/
 /*     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />*/
 /* */
@@ -113,5 +112,7 @@ class __TwigTemplate_32b214f1e210a9e81e45e3ed42fcfdaa70d23573c6a0b7e7aa98bde9d58
 /* */
 /*     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />*/
 /* </form>*/
+/* */
+/* */
 /* {% endblock fos_user_content %}*/
 /* */

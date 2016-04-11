@@ -8,15 +8,16 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("::base.html.twig", "ContactBundle:Contact:show.html.twig", 1);
+        $this->parent = $this->loadTemplate("ContactBundle::layout.html.twig", "ContactBundle:Contact:show.html.twig", 1);
         $this->blocks = array(
+            'stylesheet' => array($this, 'block_stylesheet'),
             'body' => array($this, 'block_body'),
         );
     }
 
     protected function doGetParent(array $context)
     {
-        return "::base.html.twig";
+        return "ContactBundle::layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -24,60 +25,69 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 3
+    // line 2
+    public function block_stylesheet($context, array $blocks = array())
+    {
+        // line 3
+        echo "    <link reel=\"stylesheet\" href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/style.css"), "html", null, true);
+        echo "\"/>
+    ";
+    }
+
+    // line 5
     public function block_body($context, array $blocks = array())
     {
-        // line 4
+        // line 6
         echo "<h1>Contact</h1>
 
-    <table class=\"record_properties\">
+    <table style=\"records_list\">
         <tbody>
+            
             <tr>
-                <th>Id</th>
+                <th>Nom:</th>
                 <td>";
-        // line 10
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "id", array()), "html", null, true);
-        echo "</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>";
-        // line 14
+        // line 13
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "nom", array()), "html", null, true);
         echo "</td>
             </tr>
+            <tr></tr>
             <tr>
-                <th>Prenom</th>
+                <th>Prenom:</th>
                 <td>";
         // line 18
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "prenom", array()), "html", null, true);
         echo "</td>
             </tr>
+            <tr></tr>
             <tr>
-                <th>Adresse</th>
+                <th>Adresse:</th>
                 <td>";
-        // line 22
+        // line 23
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "adresse", array()), "html", null, true);
         echo "</td>
             </tr>
+            <tr></tr>
             <tr>
-                <th>Pays</th>
+                <th>Pays:</th>
                 <td>";
-        // line 26
+        // line 28
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "pays", array()), "html", null, true);
         echo "</td>
             </tr>
+            <tr></tr>
             <tr>
-                <th>Ville</th>
+                <th>Ville:</th>
                 <td>";
-        // line 30
+        // line 33
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "ville", array()), "html", null, true);
         echo "</td>
             </tr>
+            <tr></tr>
             <tr>
-                <th>Phone</th>
+                <th>Phone:</th>
                 <td>";
-        // line 34
+        // line 38
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "phone", array()), "html", null, true);
         echo "</td>
             </tr>
@@ -87,22 +97,22 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
         <ul class=\"record_actions\">
     <li>
         <a href=\"";
-        // line 41
+        // line 45
         echo $this->env->getExtension('routing')->getPath("contact");
         echo "\">
-            Back to the list
+            Retourner à la liste
         </a>
     </li>
     <li>
         <a href=\"";
-        // line 46
+        // line 50
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("contact_edit", array("id" => $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "id", array()))), "html", null, true);
         echo "\">
-            Edit
+            Modifier
         </a>
     </li>
     <li>";
-        // line 50
+        // line 54
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), 'form');
         echo "</li>
 </ul>
@@ -121,42 +131,46 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
 
     public function getDebugInfo()
     {
-        return array (  106 => 50,  99 => 46,  91 => 41,  81 => 34,  74 => 30,  67 => 26,  60 => 22,  53 => 18,  46 => 14,  39 => 10,  31 => 4,  28 => 3,  11 => 1,);
+        return array (  116 => 54,  109 => 50,  101 => 45,  91 => 38,  83 => 33,  75 => 28,  67 => 23,  59 => 18,  51 => 13,  42 => 6,  39 => 5,  32 => 3,  29 => 2,  11 => 1,);
     }
 }
-/* {% extends '::base.html.twig' %}*/
-/* */
+/* {% extends "ContactBundle::layout.html.twig" %}*/
+/* {% block stylesheet %}*/
+/*     <link reel="stylesheet" href="{{asset('css/style.css')}}"/>*/
+/*     {%endblock%}*/
 /* {% block body -%}*/
 /*     <h1>Contact</h1>*/
 /* */
-/*     <table class="record_properties">*/
+/*     <table style="records_list">*/
 /*         <tbody>*/
+/*             */
 /*             <tr>*/
-/*                 <th>Id</th>*/
-/*                 <td>{{ entity.id }}</td>*/
-/*             </tr>*/
-/*             <tr>*/
-/*                 <th>Nom</th>*/
+/*                 <th>Nom:</th>*/
 /*                 <td>{{ entity.nom }}</td>*/
 /*             </tr>*/
+/*             <tr></tr>*/
 /*             <tr>*/
-/*                 <th>Prenom</th>*/
+/*                 <th>Prenom:</th>*/
 /*                 <td>{{ entity.prenom }}</td>*/
 /*             </tr>*/
+/*             <tr></tr>*/
 /*             <tr>*/
-/*                 <th>Adresse</th>*/
+/*                 <th>Adresse:</th>*/
 /*                 <td>{{ entity.adresse }}</td>*/
 /*             </tr>*/
+/*             <tr></tr>*/
 /*             <tr>*/
-/*                 <th>Pays</th>*/
+/*                 <th>Pays:</th>*/
 /*                 <td>{{ entity.pays }}</td>*/
 /*             </tr>*/
+/*             <tr></tr>*/
 /*             <tr>*/
-/*                 <th>Ville</th>*/
+/*                 <th>Ville:</th>*/
 /*                 <td>{{ entity.ville }}</td>*/
 /*             </tr>*/
+/*             <tr></tr>*/
 /*             <tr>*/
-/*                 <th>Phone</th>*/
+/*                 <th>Phone:</th>*/
 /*                 <td>{{ entity.phone }}</td>*/
 /*             </tr>*/
 /*         </tbody>*/
@@ -165,12 +179,12 @@ class __TwigTemplate_34aee68d976aa201124c2727669d17bda4ab0354dc2fe2675e7c6d0cb82
 /*         <ul class="record_actions">*/
 /*     <li>*/
 /*         <a href="{{ path('contact') }}">*/
-/*             Back to the list*/
+/*             Retourner à la liste*/
 /*         </a>*/
 /*     </li>*/
 /*     <li>*/
 /*         <a href="{{ path('contact_edit', { 'id': entity.id }) }}">*/
-/*             Edit*/
+/*             Modifier*/
 /*         </a>*/
 /*     </li>*/
 /*     <li>{{ form(delete_form) }}</li>*/

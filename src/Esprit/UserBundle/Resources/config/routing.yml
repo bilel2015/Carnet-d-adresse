@@ -1,3 +1,37 @@
+user_utilisateur:
+    resource: "@UserBundle/Resources/config/routing/utilisateur.yml"
+    prefix:   /utilisateur
+
 user_homepage:
     path:     /hello/{name}
     defaults: { _controller: UserBundle:Default:index }
+contact:
+    path:     /
+    defaults: { _controller: "ContactBundle:Contact:index" }
+
+utilisateur_show:
+    path:     /{id}/show
+    defaults: { _controller: "UserBundle:Utilisateur:show" }
+
+utilisateur_new:
+    path:     /new
+    defaults: { _controller: "UserBundle:Utilisateur:new" }
+
+utilisateur_create:
+    path:     /create
+    defaults: { _controller: "UserBundle:Utilisateur:create" }
+    methods:  POST
+
+utilisateur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "UserBundle:Utilisateur:edit" }
+
+utilisateur_update:
+    path:     /{id}/update
+    defaults: { _controller: "UserBundle:Utilisateur:update" }
+    methods:  [POST, PUT]
+
+utilisateur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "UserBundle:Utilisateur:delete" }
+    methods:  [POST, DELETE]

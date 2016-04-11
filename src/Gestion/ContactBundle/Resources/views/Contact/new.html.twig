@@ -1,15 +1,21 @@
-{% extends '::base.html.twig' %}
+{% extends "ContactBundle::layout.html.twig" %}
 
 {% block body -%}
+   
+        <div id="content">
+    
+    
     <h1>Ajouter des Contacts</h1>
 
     {{ form(form) }}
-
-        <ul class="record_actions">
+<div class="breakcrumb-row">
+        <ul class="breadcrumb arrow">
     <li>
         <a href="{{ path('contact') }}">
             Retourner à la liste
         </a>
     </li>
 </ul>
+            </div>
+  </div>
 {% endblock %}

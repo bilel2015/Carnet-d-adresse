@@ -4,16 +4,13 @@ namespace Esprit\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use Esprit\UserBundle\Entity\Utilisateur;
 use Esprit\UserBundle\Form\UtilisateurType;
 
 /**
  * Utilisateur controller.
  *
- * @Route("/utilisateur")
  */
 class UtilisateurController extends Controller
 {
@@ -21,9 +18,6 @@ class UtilisateurController extends Controller
     /**
      * Lists all Utilisateur entities.
      *
-     * @Route("/", name="utilisateur")
-     * @Method("GET")
-     * @Template()
      */
     public function indexAction()
     {
@@ -31,16 +25,13 @@ class UtilisateurController extends Controller
 
         $entities = $em->getRepository('UserBundle:Utilisateur')->findAll();
 
-        return array(
+        return $this->render('UserBundle:Utilisateur:index.html.twig', array(
             'entities' => $entities,
-        );
+        ));
     }
     /**
      * Creates a new Utilisateur entity.
      *
-     * @Route("/", name="utilisateur_create")
-     * @Method("POST")
-     * @Template("UserBundle:Utilisateur:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -56,10 +47,10 @@ class UtilisateurController extends Controller
             return $this->redirect($this->generateUrl('utilisateur_show', array('id' => $entity->getId())));
         }
 
-        return array(
+        return $this->render('UserBundle:Utilisateur:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ));
     }
 
     /**
@@ -84,27 +75,21 @@ class UtilisateurController extends Controller
     /**
      * Displays a form to create a new Utilisateur entity.
      *
-     * @Route("/new", name="utilisateur_new")
-     * @Method("GET")
-     * @Template()
      */
     public function newAction()
     {
         $entity = new Utilisateur();
         $form   = $this->createCreateForm($entity);
 
-        return array(
+        return $this->render('UserBundle:Utilisateur:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ));
     }
 
     /**
      * Finds and displays a Utilisateur entity.
      *
-     * @Route("/{id}", name="utilisateur_show")
-     * @Method("GET")
-     * @Template()
      */
     public function showAction($id)
     {
@@ -118,18 +103,15 @@ class UtilisateurController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('UserBundle:Utilisateur:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
      * Displays a form to edit an existing Utilisateur entity.
      *
-     * @Route("/{id}/edit", name="utilisateur_edit")
-     * @Method("GET")
-     * @Template()
      */
     public function editAction($id)
     {
@@ -144,11 +126,11 @@ class UtilisateurController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('UserBundle:Utilisateur:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
@@ -172,9 +154,6 @@ class UtilisateurController extends Controller
     /**
      * Edits an existing Utilisateur entity.
      *
-     * @Route("/{id}", name="utilisateur_update")
-     * @Method("PUT")
-     * @Template("UserBundle:Utilisateur:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -196,17 +175,15 @@ class UtilisateurController extends Controller
             return $this->redirect($this->generateUrl('utilisateur_edit', array('id' => $id)));
         }
 
-        return array(
+        return $this->render('UserBundle:Utilisateur:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
     /**
      * Deletes a Utilisateur entity.
      *
-     * @Route("/{id}", name="utilisateur_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {

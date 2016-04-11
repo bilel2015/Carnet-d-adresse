@@ -1,9 +1,9 @@
-user:
-    resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /
-    
 contact:
     resource: "@ContactBundle/Resources/config/routing.yml"
+    prefix:   /contact
+    
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
     
 

@@ -122,17 +122,74 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/hello')) {
-            // user_homepage
-            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_homepage')), array (  '_controller' => 'Esprit\\UserBundle\\Controller\\DefaultController::indexAction',));
-            }
-
+        if (0 === strpos($pathinfo, '/contact')) {
             // contact_homepage
-            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/contact/hello') && preg_match('#^/contact/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'contact_homepage')), array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\DefaultController::indexAction',));
             }
 
+            // contact_show
+            if (preg_match('#^/contact/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'contact_show')), array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::showAction',));
+            }
+
+            // contact_new
+            if ($pathinfo === '/contact/new') {
+                return array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::newAction',  '_route' => 'contact_new',);
+            }
+
+            // contact_create
+            if ($pathinfo === '/contact/create') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_contact_create;
+                }
+
+                return array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::createAction',  '_route' => 'contact_create',);
+            }
+            not_contact_create:
+
+            // contact_edit
+            if (preg_match('#^/contact/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'contact_edit')), array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::editAction',));
+            }
+
+            // contact_update
+            if (preg_match('#^/contact/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT'));
+                    goto not_contact_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'contact_update')), array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::updateAction',));
+            }
+            not_contact_update:
+
+            // contact_delete
+            if (preg_match('#^/contact/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_contact_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'contact_delete')), array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::deleteAction',));
+            }
+            not_contact_delete:
+
+        }
+
+        // utilisateur
+        if (rtrim($pathinfo, '/') === '/utilisateur') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'utilisateur');
+            }
+
+            return array (  '_controller' => 'Esprit\\UserBundle\\Controller\\UtilisateurController::indexAction',  '_route' => 'utilisateur',);
+        }
+
+        // user_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_homepage')), array (  '_controller' => 'Esprit\\UserBundle\\Controller\\DefaultController::indexAction',));
         }
 
         // contact
@@ -144,53 +201,53 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::indexAction',  '_route' => 'contact',);
         }
 
-        // contact_show
+        // utilisateur_show
         if (preg_match('#^/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'contact_show')), array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::showAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'utilisateur_show')), array (  '_controller' => 'Esprit\\UserBundle\\Controller\\UtilisateurController::showAction',));
         }
 
-        // contact_new
+        // utilisateur_new
         if ($pathinfo === '/new') {
-            return array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::newAction',  '_route' => 'contact_new',);
+            return array (  '_controller' => 'Esprit\\UserBundle\\Controller\\UtilisateurController::newAction',  '_route' => 'utilisateur_new',);
         }
 
-        // contact_create
+        // utilisateur_create
         if ($pathinfo === '/create') {
             if ($this->context->getMethod() != 'POST') {
                 $allow[] = 'POST';
-                goto not_contact_create;
+                goto not_utilisateur_create;
             }
 
-            return array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::createAction',  '_route' => 'contact_create',);
+            return array (  '_controller' => 'Esprit\\UserBundle\\Controller\\UtilisateurController::createAction',  '_route' => 'utilisateur_create',);
         }
-        not_contact_create:
+        not_utilisateur_create:
 
-        // contact_edit
+        // utilisateur_edit
         if (preg_match('#^/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'contact_edit')), array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::editAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'utilisateur_edit')), array (  '_controller' => 'Esprit\\UserBundle\\Controller\\UtilisateurController::editAction',));
         }
 
-        // contact_update
+        // utilisateur_update
         if (preg_match('#^/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
                 $allow = array_merge($allow, array('POST', 'PUT'));
-                goto not_contact_update;
+                goto not_utilisateur_update;
             }
 
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'contact_update')), array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::updateAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'utilisateur_update')), array (  '_controller' => 'Esprit\\UserBundle\\Controller\\UtilisateurController::updateAction',));
         }
-        not_contact_update:
+        not_utilisateur_update:
 
-        // contact_delete
+        // utilisateur_delete
         if (preg_match('#^/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
                 $allow = array_merge($allow, array('POST', 'DELETE'));
-                goto not_contact_delete;
+                goto not_utilisateur_delete;
             }
 
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'contact_delete')), array (  '_controller' => 'Gestion\\ContactBundle\\Controller\\ContactController::deleteAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'utilisateur_delete')), array (  '_controller' => 'Esprit\\UserBundle\\Controller\\UtilisateurController::deleteAction',));
         }
-        not_contact_delete:
+        not_utilisateur_delete:
 
         if (0 === strpos($pathinfo, '/log')) {
             if (0 === strpos($pathinfo, '/login')) {
